@@ -1,7 +1,8 @@
 const express =  require('express');
 const layoutejs =  require('express-ejs-layouts');
 const app = express();
-const PORT = 2001
+const PORT = 2001;
+const   router = require('./router/route')
 
 // basic setups
  app.use(express.urlencoded({extended:true}));
@@ -37,19 +38,9 @@ app.get("/login",(req,res)=>{
 
 
 // new side
-const adminLayout = '../views/layout/user_layout';
-app.get('/dashboard',(req,res)=>{
-    res.render('mode/index',{layout:adminLayout});
-})
-app.get('/title',(req,res)=>{
-    res.render('mode/add-title',{layout:adminLayout});
-})
-app.get('/create-note',(req,res)=>{
-    res.render('mode/create-note',{layout:adminLayout});
-})
-app.get('/view-note',(req,res)=>{
-    res.render('mode/add-note',{layout:adminLayout});
-})
+app.use('/', router)
+
+
 
 
 
